@@ -141,11 +141,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\initialicer\MAIN.cpp" />
+    <ClCompile Include="src\initialicer\MINELLAX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\initialicer\MINELLAX.H" />
     <ClInclude Include="src\world\assets\cubo.cpp" />
     <ClInclude Include="src\world\assets\cubo.h" />
   </ItemGroup>
