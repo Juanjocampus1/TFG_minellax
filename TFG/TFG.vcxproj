@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="src\initialicer\MAIN.cpp" />
     <ClCompile Include="src\initialicer\MINELLAX.cpp" />
+    <ClCompile Include="src\THIRD_PARTY\FastNoiseLite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
