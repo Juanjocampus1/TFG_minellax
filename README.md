@@ -19,7 +19,7 @@ Clonar el Repositorio: Clone este repositorio en su máquina local utilizando el
 
 bash
 Copy code
-git clone https://github.com/tuusuario/micraft.git
+git clone https://github.com/Juanjocampus1/TFG_minellax.git
 Compilación del Código: Utiliza un compilador de C++ compatible (como g++ en Linux) para compilar el código fuente. Asegúrate de tener todas las dependencias instaladas.
 
 Ejecución del Juego: Una vez compilado, ejecuta el juego desde la línea de comandos o utilizando un entorno de desarrollo integrado (IDE).
