@@ -10,7 +10,6 @@
 // glm libraries
 #include <glm/glm.hpp>
 #include <glm/gtc/integer.hpp>
-#include <glm/gtx/transform.hpp>
 
 
 // std libraries
@@ -34,14 +33,16 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include <functional>
+#include <type_traits>
 
-
-
-template<typename T>
-using Ref = std::shared_ptr<T>;
-
-template<typename T>
-using WeakRef = std::weak_ptr<T>;
+using namespace std;
 
 template<typename T>
-using Scoped = std::unique_ptr<T>;
+using Ref = shared_ptr<T>;
+
+template<typename T>
+using WeakRef = weak_ptr<T>;
+
+template<typename T>
+using Scoped = unique_ptr<T>;

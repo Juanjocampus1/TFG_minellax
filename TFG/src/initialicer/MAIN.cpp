@@ -1,44 +1,53 @@
 #include "MINELLAX.H"
+#include "../resolution/selector_resolucion.h"
 
-int main(void)
-{
-    GLFWwindow* window;
+GLFWwindow* window;
 
-    /* Initialize the library */
+void errorCallback(int error, const char* description) {
+    cerr << "Error: " << description <<endl;
+}
+
+int main(void) {
+    glfwSetErrorCallback(errorCallback);
+
     if (!glfwInit())
         return -1;
 
-    
+    const int initialWidth = 1920, initialHeight = 1080;
+    window = glfwCreateWindow(initialWidth, initialHeight, "TFG", NULL, NULL);
 
-    /* Create a windowed mode window and its OpenGL context */
-    const int width = 1920, height = 1080;
-    window = glfwCreateWindow(width, height, "TFG", NULL, NULL);
-    if (!window)
-    {
+    if (!window) {
         glfwTerminate();
         return -1;
     }
 
-    /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
     if (glewInit() != GLEW_OK)
-        return -1;
+        exit(-1);
 
     float positions[6] = {
-		-0.5f, -0.5f,
-		0.0f, 0.5f,
-		0.5f, -0.5f
-	};
+        -0.5f, -0.5f,
+        0.0f, 0.5f,
+        0.5f, -0.5f
+    };
 
     unsigned int buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
 
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+        keyboard(key, action);
+        });
+
+    while (!glfwWindowShouldClose(window)) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 

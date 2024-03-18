@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="src\initialicer\MAIN.cpp" />
     <ClCompile Include="src\initialicer\MINELLAX.cpp" />
+    <ClCompile Include="src\resolution\selector_resoluciones.cpp" />
     <ClCompile Include="src\THIRD_PARTY\FastNoiseLite.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\initialicer\MINELLAX.H" />
+    <ClInclude Include="src\resolution\selector_resolucion.h" />
     <ClInclude Include="src\world\assets\cubo.cpp" />
     <ClInclude Include="src\world\assets\cubo.h" />
   </ItemGroup>
