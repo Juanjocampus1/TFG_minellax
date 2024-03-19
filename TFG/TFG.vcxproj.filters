@@ -27,21 +27,47 @@
     <ClCompile Include="src\resolution\selector_resoluciones.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\camera\camera.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader_manipulation\shaderClass.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\world\assets\src\EBOCubo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\world\assets\src\VAOcubo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="src\shaders\default.vert" />
+    <None Include="src\shaders\default.frag" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\world\assets\cubo.cpp">
+    <ClInclude Include="src\world\assets\src\VBOcubo.cpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\world\assets\cubo.h">
+    <ClInclude Include="src\world\assets\headers\VBOcubo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\initialicer\MINELLAX.H">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\resolution\selector_resolucion.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\camera\camera.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shader_manipulation\shader_class.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\world\assets\headers\EBOcubo.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\world\assets\headers\VAOcubo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

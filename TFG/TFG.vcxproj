@@ -140,19 +140,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\camera\camera.cpp" />
     <ClCompile Include="src\initialicer\MAIN.cpp" />
     <ClCompile Include="src\initialicer\MINELLAX.cpp" />
     <ClCompile Include="src\resolution\selector_resoluciones.cpp" />
+    <ClCompile Include="src\shader_manipulation\shaderClass.cpp" />
     <ClCompile Include="src\THIRD_PARTY\FastNoiseLite.cpp" />
+    <ClCompile Include="src\world\assets\src\EBOCubo.cpp" />
+    <ClCompile Include="src\world\assets\src\VAOcubo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="src\shaders\default.frag" />
+    <None Include="src\shaders\default.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\camera\camera.h" />
+    <ClInclude Include="src\shader_manipulation\shader_class.h" />
     <ClInclude Include="src\initialicer\MINELLAX.H" />
     <ClInclude Include="src\resolution\selector_resolucion.h" />
-    <ClInclude Include="src\world\assets\cubo.cpp" />
-    <ClInclude Include="src\world\assets\cubo.h" />
+    <ClInclude Include="src\world\assets\headers\EBOcubo.h" />
+    <ClInclude Include="src\world\assets\headers\VAOcubo.h" />
+    <ClInclude Include="src\world\assets\src\VBOcubo.cpp" />
+    <ClInclude Include="src\world\assets\headers\VBOcubo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
