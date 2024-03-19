@@ -1,25 +1,47 @@
-#include "MINELLAX.H"
+#include<iostream>
+#include<gl/glew.h>
+#include<GLFW/glfw3.h>
+
 #include "../resolution/selector_resolucion.h"
+#include"../shader_manipulation/shaderClass.h"
+#include"../world/assets/headers/VAO.h"
+#include"../world/assets/headers/VBO.h"
+#include"../world/assets/headers/EBO.h"
 
-#include "../shader_manipulation/shader_class.h"
-#include "../world/assets/headers/VAOcubo.h"
-#include "../world/assets/headers/VBOcubo.h"
-#include "../world/assets/headers/EBOcubo.h"
-
-GLfloat vertices[] = {
-    -0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,
-    0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,
-    0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f,
-    - 0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f,
-    0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f,
-    0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f
+// Vertices coordinates
+GLfloat vertices[] ={
+    -0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
+    0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
+    0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
+    -0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
+    0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
+    0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
 };
 
-GLuint indices[] = {
-    0, 3, 5,
-    3, 2, 4,
-    5, 4, 1
+// Indices for vertices order
+GLuint indices[] ={
+    0, 3, 5, // Lower left triangle
+    3, 2, 4, // Lower right triangle
+    5, 4, 1 // Upper triangle
 };
+
+VBO::VBO(GLfloat* vertices, ptrdiff_t size) {
+    glGenBuffers(1, &ID);
+    glBindBuffer(GL_ARRAY_BUFFER, ID);
+    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+}
+
+void VBO::Bind() {
+    glBindBuffer(GL_ARRAY_BUFFER, ID);
+}
+
+void VBO::Unbind() {
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void VBO::Delete() {
+    glDeleteBuffers(1, &ID);
+}
 
 GLFWwindow* window;
 
@@ -40,7 +62,8 @@ int main(void) {
     const int initialWidth = 1920, initialHeight = 1080;
     window = glfwCreateWindow(initialWidth, initialHeight, "TFG", NULL, NULL);
 
-    if (!window) {
+    if (window == NULL){
+        cout << "Failed to create GLFW window" << endl;
         glfwTerminate();
         return -1;
     }
@@ -52,22 +75,28 @@ int main(void) {
 
     glViewport(0, 0, initialWidth, initialHeight);
 
-    Shader shaderprogram("default.vert", "default.frag");
+    // Generates Shader object using shaders defualt.vert and default.frag
+    Shader shaderProgram("../Shaders/default.vert", "../Shaders/default.frag");
 
-    VAOcubo VAOcube;
-    VAOcube.Bind();
+    // Generates Vertex Array Object and binds it
+    VAO VAO1;
+    VAO1.Bind();
 
-    VBOCubo VBOcube(vertices, sizeof(vertices));
-    EBOCubo EBOcube(indices, sizeof(indices));
+    // Generates Vertex Buffer Object and links it to vertices
+    VBO VBO1(vertices, sizeof(vertices));
+    // Generates Element Buffer Object and links it to indices
+    EBO EBO1(indices, sizeof(indices));
 
-    VAOcube.linkVBOCubo(VBOcube, 0);
-    VAOcube.Unbind();
-    VBOcube.Unbind();
-    EBOcube.Unbind();
+    // Links VBO to VAO
+    VAO1.LinkVBO(VBO1, 0);
+    // Unbind all to prevent accidentally modifying them
+    VAO1.Unbind();
+    VBO1.Unbind();
+    EBO1.Unbind();
 
     glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
         keyboard(key, action);
-        });
+    });
 
     while (!glfwWindowShouldClose(window)) {
         /* Render here */
@@ -75,8 +104,9 @@ int main(void) {
         
         glClear(GL_COLOR_BUFFER_BIT);
 
-        shaderprogram.activate();
-        VAOcube.Bind();
+        shaderProgram.Activate();
+        // Bind the VAO so OpenGL knows to use it
+        VAO1.Bind();
 
         glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
 
@@ -87,10 +117,10 @@ int main(void) {
         glfwPollEvents();
     }
 
-    VAOcube.Delete();
-    VBOcube.Delete();
-    EBOcube.Delete();
-    shaderprogram.Delete();
+    VAO1.Delete();
+    VBO1.Delete();
+    EBO1.Delete();
+    shaderProgram.Delete();
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;

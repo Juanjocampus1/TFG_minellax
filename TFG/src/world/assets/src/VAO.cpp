@@ -1,24 +1,24 @@
-#include "../headers/VAOcubo.h"
+#include "../headers/VAO.h"
 
-VAOcubo::VAOcubo() {
+VAO::VAO(){
 	glGenVertexArrays(1, &ID);
 }
 
-void VAOcubo::linkVBOCubo(VBOCubo VBOCubo, GLuint layout) {
-	VBOCubo.Bind();
+void VAO::LinkVBO(VBO VBO, GLuint layout){
+	VBO.Bind();
 	glVertexAttribPointer(layout, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	glEnableVertexAttribArray(layout);
-	VBOCubo.Unbind();
+	VBO.Unbind();
 }
 
-void VAOcubo::Bind() {
+void VAO::Bind() {
 	glBindVertexArray(ID);
 }
 
-void VAOcubo::Unbind() {
+void VAO::Unbind() {
 	glBindVertexArray(0);
 }
 
-void VAOcubo::Delete() {
+void VAO::Delete() {
 	glDeleteVertexArrays(1, &ID);
 }

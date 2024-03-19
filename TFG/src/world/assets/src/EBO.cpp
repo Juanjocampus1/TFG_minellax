@@ -1,19 +1,19 @@
-#include "../headers/EBOcubo.h"
+#include "../headers/EBO.h"
 
-EBOCubo::EBOCubo(GLuint* indices, GLsizei size) {
+EBO::EBO(GLuint* indices, ptrdiff_t size) {
 	glGenBuffers(1, &ID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, GL_STATIC_DRAW);
 }
 
-void EBOCubo::Bind() {
+void EBO::Bind() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
 }
 
-void EBOCubo::Unbind() {
+void EBO::Unbind() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void EBOCubo::Delete() {
+void EBO::Delete() {
 	glDeleteBuffers(1, &ID);
 }

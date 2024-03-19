@@ -1,14 +1,14 @@
-#ifndef EBOCUBO_H
-#define EBOCUBO_H
+#ifndef VBO_CLASS_H
+#define VBO_CLASS_H
 
 #include "../../../initialicer/MINELLAX.H"
 
 
-class EBOCubo {
+class VBO {
 
 	public:
 		GLuint ID;
-		EBOCubo(GLuint* indeces, GLsizei size);
+		VBO(GLfloat* vertices, ptrdiff_t size);
 
 		void Bind();
 		void Unbind();

@@ -129,6 +129,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependecies\GLFW\include</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,24 +148,22 @@
     <ClCompile Include="src\initialicer\MINELLAX.cpp" />
     <ClCompile Include="src\resolution\selector_resoluciones.cpp" />
     <ClCompile Include="src\shader_manipulation\shaderClass.cpp" />
-    <ClCompile Include="src\THIRD_PARTY\FastNoiseLite.cpp" />
-    <ClCompile Include="src\world\assets\src\EBOCubo.cpp" />
-    <ClCompile Include="src\world\assets\src\VAOcubo.cpp" />
+    <ClCompile Include="src\world\assets\src\EBO.cpp" />
+    <ClCompile Include="src\world\assets\src\VAO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="src\shaders\default.frag" />
-    <None Include="src\shaders\default.vert" />
+    <None Include="src\Shaders\default.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera\camera.h" />
-    <ClInclude Include="src\shader_manipulation\shader_class.h" />
+    <ClInclude Include="src\shader_manipulation\shaderClass.h" />
     <ClInclude Include="src\initialicer\MINELLAX.H" />
     <ClInclude Include="src\resolution\selector_resolucion.h" />
-    <ClInclude Include="src\world\assets\headers\EBOcubo.h" />
-    <ClInclude Include="src\world\assets\headers\VAOcubo.h" />
-    <ClInclude Include="src\world\assets\src\VBOcubo.cpp" />
-    <ClInclude Include="src\world\assets\headers\VBOcubo.h" />
+    <ClInclude Include="src\world\assets\headers\EBO.h" />
+    <ClInclude Include="src\world\assets\headers\VAO.h" />
+    <ClInclude Include="src\world\assets\src\VBO.cpp" />
+    <ClInclude Include="src\world\assets\headers\VBO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

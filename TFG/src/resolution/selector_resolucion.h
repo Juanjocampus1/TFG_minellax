@@ -13,4 +13,4 @@ void changeResolution(int width, int height);
 void render();
 void keyboard(int key, int action);
 
-#endif // SELECTOR_RESOLUCIONES_H
+#endif 

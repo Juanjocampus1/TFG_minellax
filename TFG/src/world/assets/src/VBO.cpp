@@ -1,19 +1,20 @@
-#include "../headers/VBOcubo.h"
 
-VBOCubo::VBOCubo(GLfloat* vertices, GLsizei size) {
+#include"../headers/VBO.h"
+
+VBO::VBO(GLfloat* vertices, ptrdiff_t size) {
 	glGenBuffers(1, &ID);
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
 }
 
-void VBOCubo::Bind() {
+void VBO::Bind() {
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 }
 
-void VBOCubo::Unbind() {
+void VBO::Unbind() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void VBOCubo::Delete() {
+void VBO::Delete() {
 	glDeleteBuffers(1, &ID);
 }
