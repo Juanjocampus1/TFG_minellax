@@ -25,24 +25,6 @@ GLuint indices[] ={
     5, 4, 1 // Upper triangle
 };
 
-VBO::VBO(GLfloat* vertices, ptrdiff_t size) {
-    glGenBuffers(1, &ID);
-    glBindBuffer(GL_ARRAY_BUFFER, ID);
-    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
-}
-
-void VBO::Bind() {
-    glBindBuffer(GL_ARRAY_BUFFER, ID);
-}
-
-void VBO::Unbind() {
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
-
-void VBO::Delete() {
-    glDeleteBuffers(1, &ID);
-}
-
 GLFWwindow* window;
 
 void errorCallback(int error, const char* description) {
@@ -75,24 +57,27 @@ int main(void) {
 
     glViewport(0, 0, initialWidth, initialHeight);
 
-    // Generates Shader object using shaders defualt.vert and default.frag
-    Shader shaderProgram("../Shaders/default.vert", "../Shaders/default.frag");
+    try {
+        // Generates Shader object using shaders defualt.vert and default.frag
+        Shader shaderProgram("src/shaders/default.vert", "src/shaders/default.frag");
 
-    // Generates Vertex Array Object and binds it
-    VAO VAO1;
-    VAO1.Bind();
+        // Generates Vertex Array Object and binds it
+        VAO VAO1;
+        VAO1.Bind();
 
-    // Generates Vertex Buffer Object and links it to vertices
-    VBO VBO1(vertices, sizeof(vertices));
-    // Generates Element Buffer Object and links it to indices
-    EBO EBO1(indices, sizeof(indices));
+        // Generates Vertex Buffer Object and links it to vertices
+        VBO VBO1(vertices, sizeof(vertices));
+        // Generates Element Buffer Object and links it to indices
+        EBO EBO1(indices, sizeof(indices));
 
-    // Links VBO to VAO
-    VAO1.LinkVBO(VBO1, 0);
-    // Unbind all to prevent accidentally modifying them
-    VAO1.Unbind();
-    VBO1.Unbind();
-    EBO1.Unbind();
+        // Links VBO to VAO
+        VAO1.LinkVBO(VBO1, 0);
+        // Unbind all to prevent accidentally modifying them
+        VAO1.Unbind();
+        VBO1.Unbind();
+        EBO1.Unbind();
+    
+
 
     glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
         keyboard(key, action);
@@ -124,6 +109,12 @@ int main(void) {
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
+    }
+
+    catch (const exception& e) {
+        cerr << "Excepción capturada: " << e.what() << '\n';
+        return -1;
+    }
 }
 
 

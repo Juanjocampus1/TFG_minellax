@@ -17,8 +17,7 @@ string get_file_contents(const char* filename)
 }
 
 // Constructor that build the Shader Program from 2 different shaders
-Shader::Shader(const char* vertexFile, const char* fragmentFile)
-{
+Shader::Shader(const char* vertexFile, const char* fragmentFile){
 	// Read vertexFile and fragmentFile and store the strings
 	try {
 		// Read vertexFile and fragmentFile and store the strings
@@ -64,13 +63,11 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 }
 
 // Activates the Shader Program
-void Shader::Activate()
-{
+void Shader::Activate(){
 	glUseProgram(ID);
 }
 
 // Deletes the Shader Program
-void Shader::Delete()
-{
+void Shader::Delete(){
 	glDeleteProgram(ID);
 }
